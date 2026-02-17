@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Helenaa G M | ECE Engineer & VLSI Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&family=Inconsolata:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== TOKENS ===== */
+    :root {
+      --cream:   #faf6f0;
+      --cream2:  #f3ede3;
+      --cream3:  #ede4d6;
+      --white:   #ffffff;
+      --clay:    #c8603a;   /* terracotta */
+      --clay-lt: #e8845f;
+      --clay-bg: rgba(200,96,58,0.08);
+      --sage:    #5a7a60;   /* muted green */
+      --sage-lt: rgba(90,122,96,0.12);
+      --ink:     #1e1a14;
+      --ink2:    #3a3429;
+      --muted:   #887e70;
+      --border:  #ddd5c5;
+      --border2: rgba(200,96,58,0.2);
+      --shadow:  0 4px 24px rgba(30,26,20,0.08);
+      --shadow2: 0 12px 48px rgba(30,26,20,0.13);
+      --nav-h:   64px;
+    }
+
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-h);
+      background: rgba(250,246,240,0.92);
+      backdrop-filter: blur(16px) saturate(1.5);
+      -webkit-backdrop-filter: blur(16px) saturate(1.5);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+      padding: 0 2.5rem;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+    }
+    .nav-logo em { font-style: italic; color: var(--clay); }
+    .nav-links {
+      display: flex; gap: 2.2rem; list-style: none; align-items: center;
+    }
+    .nav-links a {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; left: 0; bottom: -2px; right: 0; height: 1px;
+      background: var(--clay);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+    .nav-links a:hover { color: var(--clay); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--ink); border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile Nav */
+    .mobile-nav {
+      display: none;
+      position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 99;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      flex-direction: column;
+      padding: 1.2rem 2rem 1.8rem;
+      gap: 0;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+    .mobile-nav a:hover { color: var(--clay); }
+
+    /* ===== SECTION STRUCTURE ===== */
+    section { padding: 6rem 2.5rem; }
+    .container { max-width: 1080px; margin: 0 auto; }
+    .section-eyebrow {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 0.5rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .section-eyebrow::before {
+      content: '';
+      display: inline-block; width: 24px; height: 1px;
+      background: var(--clay);
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 300;
+      line-height: 1.12;
+      color: var(--ink);
+      margin-bottom: 3rem;
+      letter-spacing: -0.01em;
+    }
+    .section-title strong { font-weight: 600; }
+    .section-title em { font-style: italic; color: var(--clay); }
+
+    /* ===== HERO ===== */
+    #home {
+      min-height: 100vh;
+      background: var(--cream);
+      display: flex; align-items: center;
+      padding-top: calc(var(--nav-h) + 3rem);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Decorative background shapes */
+    .hero-bg {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+    }
+    .hero-bg-circle {
+      position: absolute;
+      border-radius: 50%;
+    }
+    .hero-bg-circle:nth-child(1) {
+      width: 500px; height: 500px;
+      border: 1px solid var(--border2);
+      top: -120px; right: -100px;
+    }
+    .hero-bg-circle:nth-child(2) {
+      width: 320px; height: 320px;
+      border: 1px solid var(--border);
+      top: -30px; right: 60px;
+    }
+    .hero-bg-circle:nth-child(3) {
+      width: 180px; height: 180px;
+      background: var(--clay-bg);
+      bottom: 80px; left: -60px;
+    }
+    .hero-bg-line {
+      position: absolute;
+      width: 1px; height: 200px;
+      background: linear-gradient(to bottom, transparent, var(--border), transparent);
+      left: 50%; bottom: 0;
+    }
+
+    .hero-inner {
+      max-width: 1080px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1.1fr 0.9fr;
+      gap: 5rem; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage);
+      background: var(--sage-lt);
+      border: 1px solid rgba(90,122,96,0.3);
+      border-radius: 2px;
+      padding: 4px 12px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge::before { content: '●'; font-size: 0.5rem; }
+    .hero-h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1.6rem;
+    }
+    .hero-h1 em {
+      font-style: italic;
+      color: var(--clay);
+      font-weight: 300;
+    }
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 400px;
+      line-height: 1.85;
+      margin-bottom: 2.4rem;
+    }
+    .hero-actions { display: flex; gap: 0.9rem; flex-wrap: wrap; }
+
+    .btn-fill {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.72rem 1.7rem;
+      background: var(--clay);
+      color: #fff;
+      border-radius: 3px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-fill:hover {
+      background: var(--clay-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(200,96,58,0.28);
+    }
+    .btn-stroke {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.72rem 1.7rem;
+      border: 1.5px solid var(--border);
+      color: var(--ink2);
+      border-radius: 3px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      background: transparent;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+    .btn-stroke:hover {
+      border-color: var(--clay);
+      background: var(--clay-bg);
+      transform: translateY(-2px);
+    }
+
+    /* Hero card */
+    .hero-card-wrap {
+      display: flex; justify-content: flex-end; align-items: center;
+      position: relative;
+    }
+    .hero-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2.2rem;
+      width: 100%;
+      max-width: 340px;
+      box-shadow: var(--shadow2);
+      position: relative;
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100%{ transform: translateY(0); }
+      50%{ transform: translateY(-10px); }
+    }
+    /* Decorative corner accents */
+    .hero-card::before, .hero-card::after {
+      content: '';
+      position: absolute;
+      width: 18px; height: 18px;
+    }
+    .hero-card::before {
+      top: -1px; left: -1px;
+      border-top: 2px solid var(--clay);
+      border-left: 2px solid var(--clay);
+    }
+    .hero-card::after {
+      bottom: -1px; right: -1px;
+      border-bottom: 2px solid var(--clay);
+      border-right: 2px solid var(--clay);
+    }
+    .card-monogram {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--clay) 0%, #e88060 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 4px 16px rgba(200,96,58,0.3);
+    }
+    .card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    .card-role {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.7rem;
+      color: var(--sage);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .card-divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 1.2rem 0;
+    }
+    .card-stats {
+      display: flex; gap: 0;
+    }
+    .card-stat {
+      flex: 1; text-align: center;
+      padding: 0 0.5rem;
+      border-right: 1px solid var(--border);
+    }
+    .card-stat:last-child { border-right: none; }
+    .card-stat-val {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--clay);
+      line-height: 1;
+    }
+    .card-stat-label {
+      display: block;
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+    .card-chip {
+      display: inline-block;
+      background: var(--sage-lt);
+      border: 1px solid rgba(90,122,96,0.25);
+      color: var(--sage);
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      padding: 3px 9px;
+      border-radius: 2px;
+      margin-top: 1rem;
+    }
+
+    /* Floating accent */
+    .float-tag {
+      position: absolute;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 0.5rem 0.9rem;
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.68rem;
+      color: var(--clay);
+      letter-spacing: 0.08em;
+      box-shadow: var(--shadow);
+      animation: float2 4s ease-in-out 1s infinite;
+    }
+    @keyframes float2 {
+      0%,100%{ transform: translateY(0) rotate(-2deg); }
+      50%{ transform: translateY(-8px) rotate(-2deg); }
+    }
+    .float-tag:nth-child(2) {
+      top: -20px; left: -30px;
+      color: var(--sage);
+      animation-delay: 0s;
+    }
+    .float-tag:nth-child(3) {
+      bottom: 10px; left: -40px;
+      color: var(--clay);
+      animation-delay: 2s;
+    }
+
+    /* ===== ABOUT ===== */
+    #about { background: var(--white); }
+    .about-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 5rem; align-items: start; }
+    .about-body p {
+      font-size: 1rem; color: var(--muted); margin-bottom: 1.1rem; line-height: 1.9;
+    }
+    .about-body p:first-child { font-size: 1.08rem; color: var(--ink2); }
+    .skills-section { margin-top: 2rem; }
+    .skills-row { margin-bottom: 1.4rem; }
+    .skills-row-label {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.6rem;
+    }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .pill {
+      background: var(--cream2);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 4px 13px;
+      font-size: 0.8rem;
+      color: var(--ink2);
+      font-family: 'Inconsolata', monospace;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .pill:hover { border-color: var(--clay); color: var(--clay); background: var(--clay-bg); }
+
+    .lang-panel { background: var(--cream); border: 1px solid var(--border); border-radius: 4px; padding: 2rem; }
+    .lang-panel-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--ink);
+      margin-bottom: 1.2rem;
+    }
+    .lang-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .lang-row:last-child { border-bottom: none; }
+    .lang-n { font-size: 0.9rem; color: var(--ink2); }
+    .lang-l {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.67rem;
+      letter-spacing: 0.08em;
+      color: var(--sage);
+      text-transform: uppercase;
+    }
+    .cgpa-banner {
+      margin-top: 1.5rem;
+      background: linear-gradient(135deg, var(--clay) 0%, var(--clay-lt) 100%);
+      border-radius: 4px;
+      padding: 1.2rem 1.5rem;
+      color: #fff;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .cgpa-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .cgpa-label {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      opacity: 0.85;
+      text-transform: uppercase;
+    }
+
+    /* ===== EDUCATION ===== */
+    #education { background: var(--cream2); }
+    .edu-stack { display: flex; flex-direction: column; gap: 1.2rem; }
+    .edu-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.8rem 2rem;
+      display: grid; grid-template-columns: auto 1fr auto;
+      gap: 1.5rem; align-items: center;
+      transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .edu-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--clay);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.35s ease;
+    }
+    .edu-card:hover { box-shadow: var(--shadow2); border-color: var(--border2); transform: translateX(4px); }
+    .edu-card:hover::before { transform: scaleY(1); }
+    .edu-year {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.72rem;
+      color: var(--clay);
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+    }
+    .edu-school {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .edu-degree { font-size: 0.88rem; color: var(--muted); }
+    .edu-score {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--clay);
+      text-align: right;
+      white-space: nowrap;
+    }
+    .edu-score small {
+      display: block;
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    /* ===== PROJECTS ===== */
+    #projects { background: var(--white); }
+    .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .proj-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s;
+    }
+    .proj-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow2);
+      border-color: var(--border2);
+    }
+    .proj-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 0.8rem;
+      transition: color 0.3s;
+    }
+    .proj-card:hover .proj-num { color: var(--clay-bg); }
+    .proj-icon-row {
+      display: flex; align-items: center; gap: 0.7rem;
+      margin-bottom: 0.8rem;
+    }
+    .proj-icon {
+      font-size: 1.5rem;
+      width: 42px; height: 42px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .proj-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.18rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.7rem;
+    }
+    .proj-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.75; }
+    .proj-tag {
+      display: inline-block;
+      margin-top: 1rem;
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clay);
+      border-bottom: 1px solid var(--border2);
+      padding-bottom: 1px;
+    }
+
+    /* ===== EXPERIENCE ===== */
+    #experience { background: var(--cream2); }
+    .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .exp-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.8rem;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+      position: relative;
+    }
+    .exp-card:hover {
+      border-color: var(--border2);
+      box-shadow: var(--shadow2);
+      transform: translateY(-4px);
+    }
+    /* Star badge for ISRO */
+    .exp-card.featured::after {
+      content: '★ Featured';
+      position: absolute; top: 1rem; right: 1rem;
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clay);
+      background: var(--clay-bg);
+      border: 1px solid var(--border2);
+      padding: 2px 8px;
+      border-radius: 2px;
+    }
+    .exp-org {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.18rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+    .exp-role {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.25rem;
+    }
+    .exp-loc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .exp-date-chip {
+      display: inline-block;
+      background: var(--cream2);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      padding: 3px 10px;
+    }
+    .exp-domain {
+      display: inline-block;
+      margin-left: 0.5rem;
+      background: var(--clay-bg);
+      border: 1px solid var(--border2);
+      border-radius: 2px;
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--clay);
+      padding: 3px 10px;
+    }
+
+    /* ===== CERTIFICATIONS ===== */
+    #certifications { background: var(--white); }
+    .certs-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; }
+    .certs-block-title {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .certs-block-title::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+    .cert-row {
+      display: flex; align-items: center;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+      transition: padding-left 0.2s;
+    }
+    .cert-row:hover { padding-left: 0.6rem; }
+    .cert-bullet {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--clay); flex-shrink: 0;
+    }
+    .cert-name { flex: 1; font-size: 0.9rem; color: var(--ink2); }
+    .cert-src {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .evt-row {
+      display: flex; gap: 0.9rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .evt-icon { font-size: 1rem; flex-shrink: 0; line-height: 1.5; }
+    .evt-main strong {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--ink2);
+      margin-bottom: 2px;
+    }
+    .evt-main span { font-size: 0.82rem; color: var(--muted); }
+
+    /* ===== CONTACT ===== */
+    #contact { background: var(--cream2); }
+    .contact-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+    .contact-inner .section-title { margin-bottom: 0.8rem; }
+    .contact-tagline { color: var(--muted); margin-bottom: 2.5rem; font-size: 0.97rem; line-height: 1.85; }
+    .contact-grid { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; }
+    .contact-item {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.75rem 1.4rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      color: var(--ink2);
+      transition: border-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .contact-item:hover {
+      border-color: var(--clay);
+      color: var(--clay);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(200,96,58,0.14);
+    }
+    .contact-item svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 2rem;
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+    }
+    footer em { color: var(--clay-lt); font-style: normal; }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-card-wrap { justify-content: center; margin-top: 2rem; }
+      .about-layout { grid-template-columns: 1fr; gap: 2rem; }
+      .proj-grid { grid-template-columns: 1fr 1fr; }
+      .exp-grid { grid-template-columns: 1fr; }
+      .certs-wrap { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-h1 { font-size: clamp(2.8rem, 12vw, 5rem); }
+      .proj-grid { grid-template-columns: 1fr; }
+      section { padding: 4rem 1.5rem; }
+      nav { padding: 0 1.5rem; }
+      .edu-card { grid-template-columns: 1fr; gap: 0.5rem; }
+      .edu-score { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="nav-logo">Helenaa <em>G M</em></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#about" onclick="closeMobileNav()">About</a>
+  <a href="#education" onclick="closeMobileNav()">Education</a>
+  <a href="#projects" onclick="closeMobileNav()">Projects</a>
+  <a href="#experience" onclick="closeMobileNav()">Experience</a>
+  <a href="#certifications" onclick="closeMobileNav()">Certifications</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section id="home">
+  <div class="hero-bg">
+    <div class="hero-bg-circle"></div>
+    <div class="hero-bg-circle"></div>
+    <div class="hero-bg-circle"></div>
+    <div class="hero-bg-line"></div>
+  </div>
+  <div class="hero-inner container">
+    <div class="hero-left reveal-left">
+      <div class="hero-badge">ECE · VLSI · Signal Processing</div>
+      <h1 class="hero-h1">Helenaa<br><em>G M</em></h1>
+      <p class="hero-desc">
+        Dedicated engineer with a strong foundation in VLSI, signal processing,
+        and digital design — combining academic insight with industry experience
+        to build efficient hardware solutions for real-time applications.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-fill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+          Get In Touch
+        </a>
+        <!-- 🔗 Update href to your actual resume path or hosted URL -->
+        <a href="Helenaa_CV_Resume.pdf" download class="btn-stroke">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download CV
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-card-wrap reveal">
+      <div class="float-tag">VLSI · RTL Design</div>
+      <div class="float-tag">ISRO · Range Ops</div>
+      <div class="hero-card">
+        <div class="card-monogram">HG</div>
+        <div class="card-name">Helenaa G M</div>
+        <div class="card-role">Electronics &amp; Communication Engineering</div>
+        <hr class="card-divider">
+        <div class="card-stats">
+          <div class="card-stat">
+            <span class="card-stat-val">4</span>
+            <span class="card-stat-label">Internships</span>
+          </div>
+          <div class="card-stat">
+            <span class="card-stat-val">3</span>
+            <span class="card-stat-label">Projects</span>
+          </div>
+          <div class="card-stat">
+            <span class="card-stat-val">5</span>
+            <span class="card-stat-label">Certs</span>
+          </div>
+        </div>
+        <div class="card-chip">📍 SNS College of Technology · 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="container">
+    <div class="section-eyebrow">01 · About Me</div>
+    <h2 class="section-title">Engineer. <em>Innovator.</em> <strong>Builder.</strong></h2>
+    <div class="about-layout">
+      <div class="about-body reveal-left">
+        <p>
+          I'm a final-year B.E. student in Electronics and Communication Engineering at SNS College of Technology, Coimbatore — maintaining a CGPA of 9.54. My curiosity spans from sub-micron chip design to embedded sensor systems and space-range operations.
+        </p>
+        <p>
+          I've interned at ISRO – SHAR SDSC for Range Operations, worked on a VLSI RTL-to-GDS II flow, developed an ASP web application, and participated in electronics designing and manufacturing — a rare blend of space tech, hardware, and software.
+        </p>
+        <p>
+          Beyond the lab, I'm a competitive mind — IDEATHON winner, paper presenter, national seminar attendee, and international conference participant. I communicate across 4 languages, with German as an ongoing endeavour.
+        </p>
+        <div class="skills-section">
+          <div class="skills-row">
+            <div class="skills-row-label">Technical Skills</div>
+            <div class="pill-row">
+              <span class="pill">C</span>
+              <span class="pill">Python</span>
+              <span class="pill">HTML</span>
+              <span class="pill">Verilog</span>
+              <span class="pill">Tinkercad</span>
+              <span class="pill">VLSI Design</span>
+              <span class="pill">RTL to GDS II</span>
+            </div>
+          </div>
+          <div class="skills-row">
+            <div class="skills-row-label">Soft Skills</div>
+            <div class="pill-row">
+              <span class="pill">Leadership</span>
+              <span class="pill">Problem Solving</span>
+              <span class="pill">Teamwork</span>
+              <span class="pill">Consistency</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="lang-panel">
+          <div class="lang-panel-title">Languages Spoken</div>
+          <div class="lang-row"><span class="lang-n">Tamil</span><span class="lang-l">Native</span></div>
+          <div class="lang-row"><span class="lang-n">English</span><span class="lang-l">Fluent</span></div>
+          <div class="lang-row"><span class="lang-n">Kannada</span><span class="lang-l">Proficient</span></div>
+          <div class="lang-row"><span class="lang-n">Malayalam</span><span class="lang-l">Proficient</span></div>
+          <div class="lang-row"><span class="lang-n">German</span><span class="lang-l">Beginner</span></div>
+        </div>
+        <div class="cgpa-banner">
+          <div>
+            <div class="cgpa-label">Current CGPA</div>
+            <div class="cgpa-val">9.54</div>
+          </div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;opacity:0.4">★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EDUCATION ===== -->
+<section id="education">
+  <div class="container">
+    <div class="section-eyebrow">02 · Education</div>
+    <h2 class="section-title">Academic <em>Journey</em></h2>
+    <div class="edu-stack">
+      <div class="edu-card reveal">
+        <div class="edu-year">2022 – 2026</div>
+        <div>
+          <div class="edu-school">SNS College of Technology</div>
+          <div class="edu-degree">B.E. Electronics &amp; Communication Engineering · Coimbatore, TamilNadu</div>
+        </div>
+        <div class="edu-score">9.54<small>CGPA</small></div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">HSC · 2022</div>
+        <div>
+          <div class="edu-school">Vimal Jyoti Convent Matric Hr. Sec. School</div>
+          <div class="edu-degree">Higher Secondary Certificate · Coimbatore, TamilNadu</div>
+        </div>
+        <div class="edu-score">85%<small>Score</small></div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">SSLC · 2020</div>
+        <div>
+          <div class="edu-school">Vimal Jyoti Convent Matric Hr. Sec. School</div>
+          <div class="edu-degree">Secondary School Leaving Certificate · Coimbatore, TamilNadu</div>
+        </div>
+        <div class="edu-score">89%<small>Score</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section id="projects">
+  <div class="container">
+    <div class="section-eyebrow">03 · Projects</div>
+    <h2 class="section-title">Things I've <em>Built</em></h2>
+    <div class="proj-grid">
+      <div class="proj-card reveal">
+        <div class="proj-num">01</div>
+        <div class="proj-icon-row"><div class="proj-icon">🚂</div></div>
+        <div class="proj-title">Automatic Railway Gate Control System</div>
+        <p class="proj-desc">Designed a self-operating railway gate controller using an IR sensor to autonomously detect approaching trains and prevent accidents — reducing critical infrastructure risk.</p>
+        <div class="proj-tag">Embedded · IR Sensor</div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-num">02</div>
+        <div class="proj-icon-row"><div class="proj-icon">📡</div></div>
+        <div class="proj-title">Radar using Ultrasonic Sensor</div>
+        <p class="proj-desc">Built a radar system that emits sound pulses and calculates object distance by precisely measuring echo return time — ideal for proximity detection and obstacle avoidance.</p>
+        <div class="proj-tag">Ultrasonic · Signal Processing</div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-num">03</div>
+        <div class="proj-icon-row"><div class="proj-icon">🛰️</div></div>
+        <div class="proj-title">Advanced GPS Navigation System</div>
+        <p class="proj-desc">Designing a next-generation GPS navigator with capabilities beyond current AirTag navigation — focused on real-time precision tracking and enhanced spatial awareness.</p>
+        <div class="proj-tag">GPS · Navigation · Hardware</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPERIENCE ===== -->
+<section id="experience">
+  <div class="container">
+    <div class="section-eyebrow">04 · Internship Experience</div>
+    <h2 class="section-title">Where I've <em>Worked</em></h2>
+    <div class="exp-grid">
+      <div class="exp-card featured reveal">
+        <div class="exp-org">ISRO – SHAR SDSC</div>
+        <div class="exp-role">Range Operations</div>
+        <div class="exp-loc">Sriharikotta</div>
+        <div>
+          <span class="exp-date-chip">October 2025</span>
+          <span class="exp-domain">Space Technology</span>
+        </div>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-org">SNS College of Technology (C2S)</div>
+        <div class="exp-role">VLSI RTL Design to GDS II Flow</div>
+        <div class="exp-loc">Coimbatore</div>
+        <div>
+          <span class="exp-date-chip">July 2024</span>
+          <span class="exp-domain">Hardware Design</span>
+        </div>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-org">Salzer Electronics Limited</div>
+        <div class="exp-role">Designing &amp; Manufacturing</div>
+        <div class="exp-loc">Coimbatore</div>
+        <div>
+          <span class="exp-date-chip">June 2025</span>
+          <span class="exp-domain">Electronics</span>
+        </div>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-org">NXT Logic Software Solutions</div>
+        <div class="exp-role">ASP Web Development</div>
+        <div class="exp-loc">Coimbatore</div>
+        <div>
+          <span class="exp-date-chip">March 2023</span>
+          <span class="exp-domain">Web Development</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CERTIFICATIONS ===== -->
+<section id="certifications">
+  <div class="container">
+    <div class="section-eyebrow">05 · Certifications &amp; Events</div>
+    <h2 class="section-title">Learning &amp; <em>Recognition</em></h2>
+    <div class="certs-wrap reveal">
+      <div>
+        <div class="certs-block-title">Courses</div>
+        <div class="cert-row">
+          <div class="cert-bullet"></div>
+          <div class="cert-name">C Nano Degree</div>
+          <div class="cert-src">PrepInsta</div>
+        </div>
+        <div class="cert-row">
+          <div class="cert-bullet"></div>
+          <div class="cert-name">Python Nano Degree</div>
+          <div class="cert-src">PrepInsta</div>
+        </div>
+        <div class="cert-row">
+          <div class="cert-bullet"></div>
+          <div class="cert-name">HTML &amp; CSS</div>
+          <div class="cert-src">PrepInsta</div>
+        </div>
+        <div class="cert-row">
+          <div class="cert-bullet"></div>
+          <div class="cert-name">Azure AI-900</div>
+          <div class="cert-src">Microsoft</div>
+        </div>
+        <div class="cert-row">
+          <div class="cert-bullet"></div>
+          <div class="cert-name">Azure DP-100</div>
+          <div class="cert-src">Microsoft</div>
+        </div>
+      </div>
+      <div>
+        <div class="certs-block-title">Events &amp; Achievements</div>
+        <div class="evt-row">
+          <div class="evt-icon">🏆</div>
+          <div class="evt-main">
+            <strong>Winner – IDEATHON</strong>
+            <span>Ramakrishna College of Technology</span>
+          </div>
+        </div>
+        <div class="evt-row">
+          <div class="evt-icon">📄</div>
+          <div class="evt-main">
+            <strong>Paper Presentation</strong>
+            <span>Bannari Amman Institute of Technology</span>
+          </div>
+        </div>
+        <div class="evt-row">
+          <div class="evt-icon">🖥️</div>
+          <div class="evt-main">
+            <strong>National Level Seminar</strong>
+            <span>FPGA EDA Tools</span>
+          </div>
+        </div>
+        <div class="evt-row">
+          <div class="evt-icon">🌐</div>
+          <div class="evt-main">
+            <strong>International Conference</strong>
+            <span>IIPEM-2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner reveal">
+      <div class="section-eyebrow" style="justify-content:center">06 · Contact</div>
+      <h2 class="section-title">Let's <em>Connect</em></h2>
+      <p class="contact-tagline">
+        Open to internships, research collaborations, and opportunities in VLSI, embedded systems,
+        and signal processing. Let's build something impactful together.
+      </p>
+      <div class="contact-grid">
+        <a href="mailto:helenaafrankline@gmail.com" class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+          Email
+        </a>
+        <a href="tel:+919894417841" class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +91 98944 17841
+        </a>
+        <a href="https://linkedin.com/in/helenaa-gm" target="_blank" class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <!-- 🔗 Update href to your actual resume file path or hosted URL -->
+        <a href="Helenaa_CV_Resume.pdf" download class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download CV
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  Crafted with care · <em>Helenaa G M</em> · 2025
+</footer>
+
+<script>
+  // ===== HAMBURGER =====
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+  function closeMobileNav() {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+  }
+
+  // ===== SCROLL REVEAL =====
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal, .reveal-left').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
